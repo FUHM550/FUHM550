@@ -19,24 +19,19 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          perspective: 1000px;
           overflow: hidden;
           font-family: Arial, Helvetica, sans-serif;
         }
 
-        .scene { width: 200px; height: 280px; position: relative; transform-style: preserve-3d; }
+        .scene { width: 200px; height: 280px; position: relative; }
 
-        .memory-card {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          transform-style: preserve-3d;
-          animation: rotateCard 12s linear infinite;
-        }
+        .memory-card { width: 100%; height: 100%; position: absolute; }
 
-        @keyframes rotateCard {
-          0%   { transform: rotateX(20deg) rotateY(0deg); }
-          100% { transform: rotateX(20deg) rotateY(360deg); }
+        /* GitHub shows the SVG as an image, which flattens shared 3D scenes,
+           so each face carries its own perspective + spin and hides its back. */
+        @keyframes rotateFace {
+          0%   { transform: perspective(1000px) rotateX(20deg) rotateY(0deg) var(--place); }
+          100% { transform: perspective(1000px) rotateX(20deg) rotateY(360deg) var(--place); }
         }
 
         .face {
@@ -44,18 +39,27 @@
           background: var(--psx-grey);
           border-radius: 10px;
           box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.2);
+          animation: rotateFace 12s linear infinite;
         }
+
+        /* backface-visibility is ignored in images too, so swap front/back by hand:
+           front faces the viewer for the first and last quarter of the spin. */
+        @keyframes showFront { 0% { opacity: 1; } 25% { opacity: 0; } 75% { opacity: 1; } }
+        @keyframes showBack  { 0% { opacity: 0; } 25% { opacity: 1; } 75% { opacity: 0; } }
+
+        .face.front { animation: rotateFace 12s linear infinite, showFront 12s step-end infinite; }
+        .face.back  { animation: rotateFace 12s linear infinite, showBack 12s step-end infinite; }
 
         .face.front, .face.back { width: 200px; height: 280px; }
         .face.left, .face.right { width: 24px; height: 280px; left: 88px; }
         .face.top, .face.bottom { width: 200px; height: 24px; top: 128px; }
 
-        .face.front  { transform: translateZ(12px); }
-        .face.back   { transform: rotateY(180deg) translateZ(12px); }
-        .face.left   { transform: rotateY(-90deg) translateZ(100px); }
-        .face.right  { transform: rotateY(90deg) translateZ(100px); }
-        .face.top    { transform: rotateX(90deg) translateZ(140px); }
-        .face.bottom { transform: rotateX(-90deg) translateZ(140px); }
+        .face.front  { --place: translateZ(12px); }
+        .face.back   { --place: rotateY(180deg) translateZ(12px); }
+        .face.left   { --place: rotateY(-90deg) translateZ(100px); }
+        .face.right  { --place: rotateY(90deg) translateZ(100px); }
+        .face.top    { --place: rotateX(90deg) translateZ(140px); }
+        .face.bottom { --place: rotateX(-90deg) translateZ(140px); }
 
         .face.front {
           background: linear-gradient(145deg, var(--psx-light-grey) 0%, var(--psx-grey) 50%, var(--psx-dark-grey) 100%);
@@ -143,6 +147,16 @@
 
       <div class="scene">
         <div class="memory-card">
+          <div class="face left"></div>
+          <div class="face right"></div>
+          <div class="face top"></div>
+          <div class="face bottom">
+            <div class="pin-slot"></div><div class="pin-slot"></div>
+            <div class="pin-slot"></div><div class="pin-slot"></div>
+            <div class="pin-slot"></div><div class="pin-slot"></div>
+            <div class="pin-slot"></div><div class="pin-slot"></div>
+          </div>
+          <div class="face back"></div>
           <div class="face front">
             <div class="screw-recess left"></div>
             <div class="screw-recess right"></div>
@@ -154,16 +168,6 @@
             </div>
             <div class="label-recess"></div>
             <div class="brand-embossed">github</div>
-          </div>
-          <div class="face back"></div>
-          <div class="face left"></div>
-          <div class="face right"></div>
-          <div class="face top"></div>
-          <div class="face bottom">
-            <div class="pin-slot"></div><div class="pin-slot"></div>
-            <div class="pin-slot"></div><div class="pin-slot"></div>
-            <div class="pin-slot"></div><div class="pin-slot"></div>
-            <div class="pin-slot"></div><div class="pin-slot"></div>
           </div>
         </div>
       </div>
