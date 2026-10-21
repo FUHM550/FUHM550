@@ -1,28 +1,14 @@
-## Hi there 
+## Hi there
 
-<!--
-**FUHM550/FUHM550** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-
-
-- 🌱 I’m currently learning ... 
-  
-- 👯 I’m looking to collaborate on ... 
-  
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- ⚡ Fun fact: ...
-  
--->
 CURRENTLY IM WORKING ON VIRTUAL ENVIROMENTS THAT ENABLE ACCEABILITY OF LEGACY SYSTEMS
 
   I WORK MOSTLY WITH C, HTML/CSS/JAVASCRIPT, NODE.JS, REST.API, PYTHON, POSTGRESQL
 
   I'D LOVE TO COLABORATE ON IOT DEVELOPMENT FOR WEB INTERFACE'S
 
-IM CURRENTLY LEARNING WITH UBUNTU, ARCH, VM'S, WEB DEVELOPMENT, NPM. 
+IM CURRENTLY LEARNING WITH UBUNTU, ARCH, VM'S, WEB DEVELOPMENT, NPM.
 
 I LOVE WORKING ON LINUX SYSTEMS AND DESIRE TO MANAGE THE DEVELOPMENT OF APPS THAT CAN ESCALATE TO THE MOST POPULAR ECOSYSTEMS, OFFER THE BEST AND HIGHEST LEVEL OF INTER LAYER COMPATIBILITY AND REDUCE HARDWARE OBSOLESCENCE
+
+
+<p align="center"><img src="./profile/memcard.svg" alt="PS1-style memory card" width="360" /></p>
